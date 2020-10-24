@@ -3,8 +3,8 @@ En este repositorio se van a ir realizando los ejercicios de autoevaluación nec
 
 ## Índice
 
-* [Tema 1: Arquitectura software para la nube](https://github.com/AngelValera/CC2021-Ejercicios/blob/main/Ejercicios/Tema1.md)
-<!--* [Tema 2: Desarrollo basado en pruebas]() -->
+* [Tema 1: Arquitectura software para la nube](./Ejercicios/Tema1.md)
+* [Tema 2: Desarrollo basado en pruebas](./Ejercicios/Tema2.md) 
 <!--* [Tema 3: Microservicios]() -->
 <!--* [Tema 4: Usando contenedores]() -->
 <!--* [Tema 5: Gestión de configuraciones]() -->
