@@ -1,0 +1,23 @@
+{
+  "name": "ejercicio2",
+  "version": "1.0.0",
+  "description": "Fichero package.json de ejemplo para el ejercicio 2 del tema 2",
+  "main": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelValera/CC2021-Ejercicios.git"
+  },
+  "author": "Angel Valera Motos <angelvalera.epal@gmail.com>",
+  "license": "GNU General Public License v3.0",
+  "bugs": {
+    "url": "https://github.com/AngelValera/CC2021-Ejercicios/issues"
+  },
+  "homepage": "https://github.com/AngelValera/CC2021-Ejercicios#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
