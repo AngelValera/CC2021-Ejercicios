@@ -10,3 +10,6 @@ fatlib
 *.[oa]
 *~
 *.#
+
+# NodeJS
+node_modules
