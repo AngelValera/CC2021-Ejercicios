@@ -228,3 +228,4 @@ Desde travis podemos comprobar que efectivamente, el proyecto ha pasado los test
 Por último, podemos añadir una imagen en el readme del repositorio que se actualizará si pasa o no pasa los test de travis.
 
 ![Imagen de test en readme](img/Tema2/Ej5_4.png "Imagen de test en readme")
+
