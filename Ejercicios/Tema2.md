@@ -43,13 +43,13 @@ Por último podemos ver las versiones instaladas de node.js que tenemos, para el
 
 * `$ nvm ls`
 
-![nvm ls](img/Tema2/Ej1_1.png)
+![nvm ls](img/Tema2/Ej1_1.png "Listado de versiones instaladas")
 
 Para cambiar y usar una versión u otra utilizamos el siguiente comando:
 
 * `$ nvm use v15.0.1` 
 
-![nvm ls](img/Tema2/Ej1_2.png)
+![nvm ls](img/Tema2/Ej1_2.png "Selección de la versión 15.0.1")
 
 Para detener nvm en la shell actual usamos el siguiente código:
 
@@ -112,7 +112,7 @@ Esto nos agregará al fichero package.json lo siguiente:
 ```
 Quedándo el fichero finalmente como se puede ver en la siguiente imagen:
 
-![package.json](img/Tema2/Ej2_2.png)
+![package.json](img/Tema2/Ej2_2.png "Package.json")
 
 ---
 
@@ -126,34 +126,105 @@ El siguiente paso es instalar y configurar Java 8 ya que es un requisito previo 
 
 * `$ sudo apt install openjdk-8-jdk openjdk-8-jre`
 
-![Instalar jdk 8](img/Tema2/Ej3_1.png)
+![Instalar jdk 8](img/Tema2/Ej3_1.png "Instalación de Java")
 
 El siguiente paso es instalar tanto [Scala como sbt](http://www.codebind.com/linux-tutorials/install-scala-sbt-java-ubuntu-18-04-lts-linux/). Instalaremos la versión 2.11.8 de Scala y la versión 1.4.1 de sbt.
 
 Una vez instalados, seguimos los pasos que aparecen en el Readme del repositorio, para iniciar sbt, compilar y ejecutar el proyecto. Hecho esto, si todo a ido correctamente, deberíamos poder acceder a  [http://localhost:8080](http://localhost:8080) y ver lo que aparece en la siguiente imagen:
 
-![http://localhost:8080](img/Tema2/Ej3_2.png)
+![http://localhost:8080](img/Tema2/Ej3_2.png "http://localhost:8080")
 
 A continuación,  se realizarán las pruebas recomendadas en el repositorio cuyos resultados pueden observarse en la siguiente imagen.
 
-![Test](img/Tema2/Ej3_3.png)
+![Test](img/Tema2/Ej3_3.png "Ejecución de los test")
 
 
 Como se puede comprobar en la siguiente captura, el objetivo de estos test consiste en añadir diversas apuestas a un diccionario de porras especificando para ello el nombre de la persona que apuesta y su resultado. 
 
-![Resultado test](img/Tema2/Ej3_4.png)
+![Resultado test](img/Tema2/Ej3_4.png "Resultado de los test")
 
 Finalmente paramos el servicio usando :
 
 * `$ re-stop`
 
-![Resultado test](img/Tema2/Ej3_5.png)
+![Detección del servicio](img/Tema2/Ej3_5.png "Detección del servicio")
 
 
 ---
 
 #### Ejercicio 4: Para la aplicación que se está haciendo, escribir una serie de aserciones y probar que efectivamente no fallan. Añadir tests para una nueva funcionalidad, probar que falla y escribir el código para que no lo haga. A continuación, ejecutarlos desde mocha (u otro módulo de test de alto nivel), usando descripciones del test y del grupo de test de forma correcta. Si hasta ahora no has subido el código que has venido realizando a GitHub, es el momento de hacerlo, porque lo vamos a necesitar un poco más adelante.
 
+Para realizar este ejercicio se ha creado un proyecto tomando como ejemplo la aplicación sobre gestión de porras que aparecía en el tema 2. La aplicación se puede encontrar en este [repositorio](https://github.com/AngelValera/Gestion_Porras).
+
+Lo primero que se ha hecho a sido crear un fichero [Apuesta.js](https://github.com/AngelValera/Gestion_Porras/blob/main/Apuesta.js) en el que hemos descrito una apuesta.
+
+Posteriormente, se ha creado un primer fichero de test, llamado [test_I.js](https://github.com/AngelValera/Gestion_Porras/blob/main/test_I.js). En este fichero ademas de los asserts que se describían en el tema2 he añadido la creación de una segunda y tercera apuestas, comprobando cada una de ellas por separado para que fuesen correctamente creadas. Finalmente, he añadido tres comprobaciones que se encargan de ver si de las tres apuestas introducidas, hay dos que sean idénticas.
+
+Ejecutamos el fichero usando:
+
+* `$ node test_I.js`
+
+Podemos ver que efectivamente ha pasado los test:
+
+![Probando los test](img/Tema2/Ej4_1.png "Pasando primeros test")
+
+Después se ha instalado mocha y se ha creado un segundo fichero de test, llamado [test_II.js](https://github.com/AngelValera/Gestion_Porras/blob/main/test_II.js). Para instalar mocha y añadirlo a las dependencias del [package.json](https://github.com/AngelValera/Gestion_Porras/blob/main/package.json) se ha ejecutado el siguiente comando:
+
+* `$  npm install mocha  --save-dev`
+
+En este segundo fichero de test, se han incluido además de los dos primeros test que se nos proporcionaban en el tema 2, un test para cada uno de los atributos de una apuesta, de manera que se compruebe lo siguiente:
+
+* Que el nombre del usuario de la apuesta no cambie.
+* Que la fecha del partido no cambie.
+* Que el nombre del patido no cambie.
+* Que la descripción del partido no cambie.
+* Que el número de goles del equipo local indicado no cambie.
+* Que el número de goles del equipo visitante indicado no cambie.
+
+Al crear estos test, y ejecutarlos usando `$ node test`  ( después de agregar en el fichero package.json en el apartado "scripts"  `"test": "mocha test_II"`), obtuve el siguiente resultado:
+
+![Error en el test](img/Tema2/Ej4_2.png "Error en los test")
+
+El error se debía a un error de sintaxis en el fichero Apuesta.js, concretamente  en el método que se encarga de devolver el número de goles del equipo visitante, por lo que no pasó el test. 
+
+El test nos está indicando que se esperaba recibir 3 goles, sin embargo recibió 31, y por tanto, no puede pasar el test.
+
+Una vez corregido el error, volví a ejecutar los test y en esta ocasión el resultado fue el siguiente:
+
+![Test superados](img/Tema2/Ej4_3.png "Test superados")
+
+
 ---
 
 #### Ejercicio 5: Haced los dos primeros pasos antes de pasar al tercero.
+
+Estos dos primeros pasos hacen referencia a lo siguiente:
+
+1. Darse de alta. Muchos están conectados con GitHub por lo que puedes usar directamente el usuario ahí. A través de un proceso de autorización, acceder al contenido e incluso informar del resultado de los tests.
+
+2. Activar el repositorio en el que se vaya a aplicar la integración continua. Travis permite hacerlo directamente desde tu configuración; en otros se dan de alta desde la web de GitHub.
+
+![Repositorio activado en travis](img/Tema2/Ej5_1.png "Repositorio activado en travis")
+
+3. Crear un fichero de configuración para que se ejecute la integración y añadirlo al repositorio.
+
+Una vez activado el repositorio en travis, tenemos que crear un fichero llamado [.travis.yml](https://github.com/AngelValera/Gestion_Porras/blob/main/.travis.yml) con el siguiente contenido:
+
+```
+language: node_js
+node_js:
+  - "v15.0.1"
+before_install:
+  - npm install -g mocha
+  - npm install .
+script: mocha test_II.js
+```
+Desde travis podemos comprobar que efectivamente, el proyecto ha pasado los test.
+
+![Test superados travis](img/Tema2/Ej5_2.png "Test superados en travis")
+
+![Test superados travis](img/Tema2/Ej5_3.png "Test superados en travis")
+
+Por último, podemos añadir una imagen en el readme del repositorio que se actualizará si pasa o no pasa los test de travis.
+
+![Imagen de test en readme](img/Tema2/Ej5_4.png "Imagen de test en readme")
