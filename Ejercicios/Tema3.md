@@ -71,8 +71,21 @@ Podemos ver el proceso completo en la siguiente captura:
 ---
 #### Ejercicio 4 Examinar la estructura de capas que se forma al crear imágenes nuevas a partir de contenedores que se hayan estado ejecutando.
 
+En mi caso para poder ver la estructura de capas que se forma al crear una nueva imagen y partiendo de la imagen que creamos en el ejercicio anterior, debemos hacer lo siguiente:
+
+![Abrir fichero con las capas](img/Tema3/Ej4_1.png "Abrir fichero con las capas")
+
+![Capas de la imagen alpine_holamundo](img/Tema3/Ej4_2.png "Capas de la imagen alpine_holamundo")
+
+Como se puede ver hemos tenido que mostrar el contenido de un fichero en formato JSON. 
+
+Concretamente en el apartado "diff_ids" podemos ver las nuevas capas, si comparamos por ejemplo, con las capas de la imagen Alpine de base que podemos ver en la siguiente captura:
+
+![Capas de la imagen Alpine base](img/Tema3/Ej4_3.png "Capas de la imagen Alpine base")
+
+
 ---
-#### Ejercicio 5: rear un volumen y usarlo, por ejemplo, para escribir la salida de un programa determinado.
+#### Ejercicio 5: Crear un volumen y usarlo, por ejemplo, para escribir la salida de un programa determinado.
 
 ---
 #### Ejercicio 6: Usar un miniframework REST para crear un servicio web y introducirlo en un contenedor, y componerlo con un cliente REST que sea el que finalmente se ejecuta y sirve como “frontend”.
