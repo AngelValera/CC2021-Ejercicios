@@ -1,5 +1,14 @@
 ## Ejercicios Tema 3: Contenedores y cómo usarlos
 
+- [Ejercicios Tema 3: Contenedores y cómo usarlos](#ejercicios-tema-3-contenedores-y-cómo-usarlos)
+    - [Ejercicio 1: Buscar alguna demo interesante de Docker y ejecutarla localmente, o en su defecto, ejecutar la imagen anterior y ver cómo funciona y los procesos que se llevan a cabo la primera vez que se ejecuta y las siguientes ocasiones.](#ejercicio-1-buscar-alguna-demo-interesante-de-docker-y-ejecutarla-localmente-o-en-su-defecto-ejecutar-la-imagen-anterior-y-ver-cómo-funciona-y-los-procesos-que-se-llevan-a-cabo-la-primera-vez-que-se-ejecuta-y-las-siguientes-ocasiones)
+    - [Ejercicio 2: Tomar algún programa simple, “Hola mundo” impreso desde el intérprete de línea de órdenes, y comparar el tamaño de las imágenes de diferentes sistemas operativos base, Fedora, CentOS y Alpine, por ejemplo.](#ejercicio-2-tomar-algún-programa-simple-hola-mundo-impreso-desde-el-intérprete-de-línea-de-órdenes-y-comparar-el-tamaño-de-las-imágenes-de-diferentes-sistemas-operativos-base-fedora-centos-y-alpine-por-ejemplo)
+    - [Ejercicio 3: Crear a partir del contenedor anterior una imagen persistente con commit.](#ejercicio-3-crear-a-partir-del-contenedor-anterior-una-imagen-persistente-con-commit)
+    - [Ejercicio 4 Examinar la estructura de capas que se forma al crear imágenes nuevas a partir de contenedores que se hayan estado ejecutando.](#ejercicio-4-examinar-la-estructura-de-capas-que-se-forma-al-crear-imágenes-nuevas-a-partir-de-contenedores-que-se-hayan-estado-ejecutando)
+    - [Ejercicio 5: Crear un volumen y usarlo, por ejemplo, para escribir la salida de un programa determinado.](#ejercicio-5-crear-un-volumen-y-usarlo-por-ejemplo-para-escribir-la-salida-de-un-programa-determinado)
+    - [Ejercicio 6: Usar un miniframework REST para crear un servicio web y introducirlo en un contenedor, y componerlo con un cliente REST que sea el que finalmente se ejecuta y sirve como “frontend”.](#ejercicio-6-usar-un-miniframework-rest-para-crear-un-servicio-web-y-introducirlo-en-un-contenedor-y-componerlo-con-un-cliente-rest-que-sea-el-que-finalmente-se-ejecuta-y-sirve-como-frontend)
+    - [Ejercicio 7: Reproducir los contenedores creados anteriormente usando un Dockerfile.](#ejercicio-7-reproducir-los-contenedores-creados-anteriormente-usando-un-dockerfile)
+    - [Ejercicio 8: Crear con docker-machine una máquina virtual local que permita desplegar contenedores y ejecutar en él contenedores creados con antelación.](#ejercicio-8-crear-con-docker-machine-una-máquina-virtual-local-que-permita-desplegar-contenedores-y-ejecutar-en-él-contenedores-creados-con-antelación)
 
 #### Ejercicio 1: Buscar alguna demo interesante de Docker y ejecutarla localmente, o en su defecto, ejecutar la imagen anterior y ver cómo funciona y los procesos que se llevan a cabo la primera vez que se ejecuta y las siguientes ocasiones.
 
