@@ -87,6 +87,79 @@ Concretamente en el apartado "diff_ids" podemos ver las nuevas capas, si compara
 ---
 #### Ejercicio 5: Crear un volumen y usarlo, por ejemplo, para escribir la salida de un programa determinado.
 
+Para crear un nuevo volumen lo que debemos hacer es ejecutar el siguiente comando indicando el nombre que queremos dar al nuevo volumen:
+
+* `docker volume create <Volumen>` 
+
+Para este ejercicio vamos a crear un nuevo volumen llamado "nuevoVolumenEj5":
+
+* `docker volume create nuevoVolumenEj5` 
+
+El siguiente paso es modificar el [programa](src/Tema3/Ej5/holaMundoEj5.py) en python que utilizamos para el segundo ejercicio, haciendo que en este caso, además de escribir por consola "hola mundo" lo haga en un fichero que crearemos dentro de un directorio.
+
+```
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Hola Mundo para el ejercicio 5 de Contenedores.
+@author: Ángel Valera Motos
+"""
+
+mensaje = "¡Hola mundo!"
+
+print("¡Hola mundo!")
+
+f = open ('./salida/holamundo.txt','w')
+f.write(mensaje)
+f.close()
+```
+
+Lo siguiente, es escribir el fichero [Dockerfile](src/Tema3/Ej5/Dockerfile):
+
+```
+#Imagen con Alpine
+FROM alpine:latest
+
+# Establecemos el directorio de trabajo.
+WORKDIR /home/Ej5/app
+
+# Instalamos Python 3
+RUN apk update && apk add python3
+
+# Copiamos el fichero fuente al directorio de trabajo.
+COPY ./holaMundoEj5.py ./
+
+# Ejecutamos el programa
+CMD ["python3", "./holaMundoEj5.py"]
+```
+Una vez escrito el Dockerfile, construimos la imagen:
+
+* `docker build --no-cache -t alpineholamundoej5 -f Dockerfile .`
+
+Montada la imagen ejecutamos el contenedor, indicándole el nombre del volumen que acabamos de crear y le indicamos la ruta del directorio interno del contenedor donde se guardará el fichero con la salida de la ejecución del programa escrito en python.
+
+* `docker run -it --rm  -v nuevoVolumenEj5:/home/Ej5/app/salida  alpineholamundoej5`
+
+El resultado se puede ver en la siguiente captura:
+
+![Ejecución del docker](img/Tema3/Ej5_1.png "Ejecución del docker")
+
+Si accedemos al interior del contenedor al directorio `/home/Ej5/app/salida`, podemos contemplar que efectivamente se ha creado un fichero con la salida del programa:
+
+![Interior del docker](img/Tema3/Ej5_2.png "Interior del docker")
+
+Si inspeccionamos el volumen podemos ver la ruta donde se ha almacenado:
+
+* `docker inspect nuevoVolumenEj5`
+  
+![Inpección del volumen](img/Tema3/Ej5_3.png "Inspección del volumen")
+
+Ahora podemos desde fuera del contenedor ver el contenido del volumen y comprobar que efectivamente se encuentra el fichero con la salida del programa que ejecutamos dentro del contenedor:
+
+![Contenido del volumen desde fuera del contenedor](img/Tema3/Ej5_4.png "Contenido del volumen desde fuera del contenedor")
+
+
+
 ---
 #### Ejercicio 6: Usar un miniframework REST para crear un servicio web y introducirlo en un contenedor, y componerlo con un cliente REST que sea el que finalmente se ejecuta y sirve como “frontend”.
 
