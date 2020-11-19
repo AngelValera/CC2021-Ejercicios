@@ -6,9 +6,8 @@
     - [Ejercicio 3: Crear a partir del contenedor anterior una imagen persistente con commit.](#ejercicio-3-crear-a-partir-del-contenedor-anterior-una-imagen-persistente-con-commit)
     - [Ejercicio 4 Examinar la estructura de capas que se forma al crear imágenes nuevas a partir de contenedores que se hayan estado ejecutando.](#ejercicio-4-examinar-la-estructura-de-capas-que-se-forma-al-crear-imágenes-nuevas-a-partir-de-contenedores-que-se-hayan-estado-ejecutando)
     - [Ejercicio 5: Crear un volumen y usarlo, por ejemplo, para escribir la salida de un programa determinado.](#ejercicio-5-crear-un-volumen-y-usarlo-por-ejemplo-para-escribir-la-salida-de-un-programa-determinado)
-    - [Ejercicio 6: Usar un miniframework REST para crear un servicio web y introducirlo en un contenedor, y componerlo con un cliente REST que sea el que finalmente se ejecuta y sirve como “frontend”.](#ejercicio-6-usar-un-miniframework-rest-para-crear-un-servicio-web-y-introducirlo-en-un-contenedor-y-componerlo-con-un-cliente-rest-que-sea-el-que-finalmente-se-ejecuta-y-sirve-como-frontend)
-    - [Ejercicio 7: Reproducir los contenedores creados anteriormente usando un Dockerfile.](#ejercicio-7-reproducir-los-contenedores-creados-anteriormente-usando-un-dockerfile)
-    - [Ejercicio 8: Crear con docker-machine una máquina virtual local que permita desplegar contenedores y ejecutar en él contenedores creados con antelación.](#ejercicio-8-crear-con-docker-machine-una-máquina-virtual-local-que-permita-desplegar-contenedores-y-ejecutar-en-él-contenedores-creados-con-antelación)
+    - [Ejercicio 6: Reproducir los contenedores creados anteriormente usando un Dockerfile.](#ejercicio-6-reproducir-los-contenedores-creados-anteriormente-usando-un-dockerfile)
+    - [Ejercicio 7: Usar un miniframework REST para crear un servicio web y introducirlo en un contenedor, y componerlo con un cliente REST que sea el que finalmente se ejecuta y sirve como “frontend”.](#ejercicio-7-usar-un-miniframework-rest-para-crear-un-servicio-web-y-introducirlo-en-un-contenedor-y-componerlo-con-un-cliente-rest-que-sea-el-que-finalmente-se-ejecuta-y-sirve-como-frontend)
 
 #### Ejercicio 1: Buscar alguna demo interesante de Docker y ejecutarla localmente, o en su defecto, ejecutar la imagen anterior y ver cómo funciona y los procesos que se llevan a cabo la primera vez que se ejecuta y las siguientes ocasiones.
 
@@ -170,12 +169,58 @@ Ahora podemos desde fuera del contenedor ver el contenido del volumen y comproba
 
 
 ---
-#### Ejercicio 6: Usar un miniframework REST para crear un servicio web y introducirlo en un contenedor, y componerlo con un cliente REST que sea el que finalmente se ejecuta y sirve como “frontend”.
+#### Ejercicio 6: Reproducir los contenedores creados anteriormente usando un Dockerfile. 
+
+Este ejercicio se ha ido realizando al mismo tiempo que el resto de ejercicios anteriores. Pueden comprobarse los distintos dockerfiles creados en los siguientes enlaces:
+
+* [Dockerfile Ejercicio 2](src/Tema3/Ej2/Dockerfile)
+
+```
+# Imagen con Fedora
+#FROM fedora
+# Imagen con Centos
+#FROM centos
+#Imagen con Alpine
+FROM alpine:latest
+
+# Establecemos el directorio de trabajo.
+WORKDIR /home/Ej2/app
+
+# Instalamos Python 3
+# para Centos
+#RUN dnf -y install python3
+# Para Alpine
+RUN apk update && apk add python3
+
+# Copiamos el fichero fuente al directorio de trabajo.
+COPY ./holaMundo.py ./
+
+# Ejecutamos el programa
+CMD ["python3", "./holaMundo.py"]
+```
+
+* [Dockerfile Ejercicio 5](src/Tema3/Ej5/Dockerfile)
+
+```
+#Imagen con Alpine
+FROM alpine:latest
+
+# Establecemos el directorio de trabajo.
+WORKDIR /home/Ej5/app
+
+# Instalamos Python 3
+RUN apk update && apk add python3
+
+# Copiamos el fichero fuente al directorio de trabajo.
+COPY ./holaMundoEj5.py ./
+
+# Ejecutamos el programa
+CMD ["python3", "./holaMundoEj5.py"]
+```
 
 ---
-#### Ejercicio 7: Reproducir los contenedores creados anteriormente usando un Dockerfile.
+#### Ejercicio 7: Usar un miniframework REST para crear un servicio web y introducirlo en un contenedor, y componerlo con un cliente REST que sea el que finalmente se ejecuta y sirve como “frontend”.
 
----
-#### Ejercicio 8: Crear con docker-machine una máquina virtual local que permita desplegar contenedores y ejecutar en él contenedores creados con antelación.
+
 
 ---
