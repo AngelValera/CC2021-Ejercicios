@@ -455,7 +455,7 @@ Finalmente, podemos comprobar que ahora tenemos desplegados y ejecutándose ambo
 
 ![contenedores ejecutandose](img/Tema3/Ej7_4.png "contenedores ejecutandose")
 
-![contenedores ejecutandose](img/Tema3/Ej7_5.png "contenedores ejecutandose")
+![contenedores ejecutandose conjuntos](img/Tema3/Ej7_5.png "contenedores ejecutandose conjuntos")
 
 
 ---
