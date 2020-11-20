@@ -1,0 +1,15 @@
+version: '2'
+services:
+   server:
+      container_name: server
+      restart: always
+      build: server/.
+      ports:
+      - "5000:5000"
+
+   client:
+      container_name: client
+      build: client/.
+      stdin_open: true
+      ports:
+      - "3000:3000"
