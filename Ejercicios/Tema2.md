@@ -1,5 +1,11 @@
 ## Ejercicios Tema 2: Desarrollo basado en pruebas
 
+- [Ejercicios Tema 2: Desarrollo basado en pruebas](#ejercicios-tema-2-desarrollo-basado-en-pruebas)
+    - [Ejercicio 1: Instalar alguno de los entornos virtuales de node.js (o de cualquier otro lenguaje con el que se esté familiarizado) y, con ellos, instalar la última versión existente, la versión minor más actual de la 4.x y lo mismo para la 0.11 o alguna impar (de desarrollo).](#ejercicio-1-instalar-alguno-de-los-entornos-virtuales-de-nodejs-o-de-cualquier-otro-lenguaje-con-el-que-se-esté-familiarizado-y-con-ellos-instalar-la-última-versión-existente-la-versión-minor-más-actual-de-la-4x-y-lo-mismo-para-la-011-o-alguna-impar-de-desarrollo)
+    - [Ejercicio 2: Crear una descripción del módulo usando package.json. En caso de que se trate de otro lenguaje, usar el método correspondiente.](#ejercicio-2-crear-una-descripción-del-módulo-usando-packagejson-en-caso-de-que-se-trate-de-otro-lenguaje-usar-el-método-correspondiente)
+    - [Ejercicio 3: Descargar el repositorio de ejemplo anterior, instalar las herramientas necesarias (principalmente Scala y sbt) y ejecutar el ejemplo desde sbt. Alternativamente, buscar otros marcos para REST en Scala tales como Finatra o Scalatra y probar los ejemplos que se incluyan en el repositorio.](#ejercicio-3-descargar-el-repositorio-de-ejemplo-anterior-instalar-las-herramientas-necesarias-principalmente-scala-y-sbt-y-ejecutar-el-ejemplo-desde-sbt-alternativamente-buscar-otros-marcos-para-rest-en-scala-tales-como-finatra-o-scalatra-y-probar-los-ejemplos-que-se-incluyan-en-el-repositorio)
+    - [Ejercicio 4: Para la aplicación que se está haciendo, escribir una serie de aserciones y probar que efectivamente no fallan. Añadir tests para una nueva funcionalidad, probar que falla y escribir el código para que no lo haga. A continuación, ejecutarlos desde mocha (u otro módulo de test de alto nivel), usando descripciones del test y del grupo de test de forma correcta. Si hasta ahora no has subido el código que has venido realizando a GitHub, es el momento de hacerlo, porque lo vamos a necesitar un poco más adelante.](#ejercicio-4-para-la-aplicación-que-se-está-haciendo-escribir-una-serie-de-aserciones-y-probar-que-efectivamente-no-fallan-añadir-tests-para-una-nueva-funcionalidad-probar-que-falla-y-escribir-el-código-para-que-no-lo-haga-a-continuación-ejecutarlos-desde-mocha-u-otro-módulo-de-test-de-alto-nivel-usando-descripciones-del-test-y-del-grupo-de-test-de-forma-correcta-si-hasta-ahora-no-has-subido-el-código-que-has-venido-realizando-a-github-es-el-momento-de-hacerlo-porque-lo-vamos-a-necesitar-un-poco-más-adelante)
+
 #### Ejercicio 1: Instalar alguno de los entornos virtuales de node.js (o de cualquier otro lenguaje con el que se esté familiarizado) y, con ellos, instalar la última versión existente, la versión minor más actual de la 4.x y lo mismo para la 0.11 o alguna impar (de desarrollo).
 
 En mi caso he decidido usar el entorno virtual nvm (Node Version Manager) de node.js. 
@@ -194,38 +200,5 @@ Una vez corregido el error, volví a ejecutar los test y en esta ocasión el res
 ![Test superados](img/Tema2/Ej4_3.png "Test superados")
 
 
----
 
-#### Ejercicio 5: Haced los dos primeros pasos antes de pasar al tercero.
-
-Estos dos primeros pasos hacen referencia a lo siguiente:
-
-1. Darse de alta. Muchos están conectados con GitHub por lo que puedes usar directamente el usuario ahí. A través de un proceso de autorización, acceder al contenido e incluso informar del resultado de los tests.
-
-2. Activar el repositorio en el que se vaya a aplicar la integración continua. Travis permite hacerlo directamente desde tu configuración; en otros se dan de alta desde la web de GitHub.
-
-![Repositorio activado en travis](img/Tema2/Ej5_1.png "Repositorio activado en travis")
-
-3. Crear un fichero de configuración para que se ejecute la integración y añadirlo al repositorio.
-
-Una vez activado el repositorio en travis, tenemos que crear un fichero llamado [.travis.yml](https://github.com/AngelValera/Gestion_Porras/blob/main/.travis.yml) con el siguiente contenido:
-
-```
-language: node_js
-node_js:
-  - "v15.0.1"
-before_install:
-  - npm install -g mocha
-  - npm install .
-script: mocha test_II.js
-```
-Desde travis podemos comprobar que efectivamente, el proyecto ha pasado los test.
-
-![Test superados travis](img/Tema2/Ej5_2.png "Test superados en travis")
-
-![Test superados travis](img/Tema2/Ej5_3.png "Test superados en travis")
-
-Por último, podemos añadir una imagen en el readme del repositorio que se actualizará si pasa o no pasa los test de travis.
-
-![Imagen de test en readme](img/Tema2/Ej5_4.png "Imagen de test en readme")
 
