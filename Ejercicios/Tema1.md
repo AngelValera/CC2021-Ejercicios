@@ -1,5 +1,10 @@
 ## Ejercicios Tema 1: Arquitecturas software para la nube
 
+- [Ejercicios Tema 1: Arquitecturas software para la nube](#ejercicios-tema-1-arquitecturas-software-para-la-nube)
+    - [Ejercicio 1: Buscar una aplicación de ejemplo, preferiblemente propia, y deducir qué patrón es el que usa. ¿Qué habría que hacer para evolucionar a un patrón tipo microservicios?](#ejercicio-1-buscar-una-aplicación-de-ejemplo-preferiblemente-propia-y-deducir-qué-patrón-es-el-que-usa-qué-habría-que-hacer-para-evolucionar-a-un-patrón-tipo-microservicios)
+    - [Ejercicio 2: En la aplicación que se ha usado como ejemplo en el ejercicio anterior, ¿podría usar diferentes lenguajes? ¿Qué almacenes de datos serían los más convenientes?](#ejercicio-2-en-la-aplicación-que-se-ha-usado-como-ejemplo-en-el-ejercicio-anterior-podría-usar-diferentes-lenguajes-qué-almacenes-de-datos-serían-los-más-convenientes)
+
+---
 #### Ejercicio 1: Buscar una aplicación de ejemplo, preferiblemente propia, y deducir qué patrón es el que usa. ¿Qué habría que hacer para evolucionar a un patrón tipo microservicios?
 
 La aplicación que he decidido coger como ejemplo, se trata de una aplicación que tuve que realizar como práctica final para la asignatura de Desarrollo de Aplicaciones para Internet. La aplicación se puede consultar en este [repositorio](https://github.com/AngelValera/Practica_7_DAI).
