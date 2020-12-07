@@ -17,13 +17,13 @@
 
 Estos dos primeros pasos hacen referencia a lo siguiente:
 
-1. Darse de alta. Muchos están conectados con GitHub por lo que puedes usar directamente el usuario ahí. A través de un proceso de autorización, acceder al contenido e incluso informar del resultado de los tests.
+1. **Darse de alta**. Muchos están conectados con GitHub por lo que puedes usar directamente el usuario ahí. A través de un proceso de autorización, acceder al contenido e incluso informar del resultado de los tests.
 
-2. Activar el repositorio en el que se vaya a aplicar la integración continua. Travis permite hacerlo directamente desde tu configuración; en otros se dan de alta desde la web de GitHub.
+2. **Activar el repositorio** en el que se vaya a aplicar la integración continua. Travis permite hacerlo directamente desde tu configuración; en otros se dan de alta desde la web de GitHub.
 
 ![Repositorio activado en travis](img/Tema4/Ej1_1.png "Repositorio activado en travis")
 
-3. Crear un fichero de configuración para que se ejecute la integración y añadirlo al repositorio.
+3. **Crear un fichero de configuración** para que se ejecute la integración y añadirlo al repositorio.
 
 Una vez activado el repositorio en travis, tenemos que crear un fichero llamado [.travis.yml](https://github.com/AngelValera/Gestion_Porras/blob/main/.travis.yml) con el siguiente contenido:
 
