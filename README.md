@@ -7,7 +7,8 @@ En este repositorio se van a ir realizando los ejercicios de autoevaluación nec
 
 * [Tema 1: Arquitectura software para la nube.](Ejercicios/Tema1.md)
 * [Tema 2: Desarrollo basado en pruebas.](Ejercicios/Tema2.md) 
-* :point_right: **[Tema 3: Usando contenedores.](Ejercicios/Tema3.md)** 
+* [Tema 3: Usando contenedores.](Ejercicios/Tema3.md)
+* :point_right: **[Tema 4: Integración continua.](Ejercicios/Tema4.md)** 
 <!--* [Tema 4: Usando contenedores]() -->
 <!--* [Tema 5: Gestión de configuraciones]() -->
 <!--* [Tema 6: Creación de infraestructuras virtuales reproducibles]() -->
