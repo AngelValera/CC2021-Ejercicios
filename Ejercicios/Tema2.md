@@ -73,7 +73,7 @@ Para generar el fichero, debemos usar el siguiente comando:
 
 Seguiremos los pasos que npm nos indica, y finalmente quedaría un [fichero](src/Tema2/Ej2/package.json) como el siguiente:
 
-```
+```json
 {
   "name": "ejercicio2",
   "version": "1.0.0",
@@ -110,7 +110,7 @@ Por ejemplo,
 
 Esto nos agregará al fichero package.json lo siguiente:
 
-```
+```json
     "dependencies": {
     "express": "^4.17.1",
     "mysql": "^2.18.1"
@@ -198,7 +198,5 @@ El test nos está indicando que se esperaba recibir 3 goles, sin embargo recibi�
 Una vez corregido el error, volví a ejecutar los test y en esta ocasión el resultado fue el siguiente:
 
 ![Test superados](img/Tema2/Ej4_3.png "Test superados")
-
-
 
 
