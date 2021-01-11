@@ -51,6 +51,129 @@ Tras ejecutarlo, obtendríamos la siguiente salida:
 ---
 #### Ejercicio 2: Realizar una aplicación básica que use express para devolver alguna estructura de datos del modelo que se viene usando en el curso.
 
+Vamos a crear desde el principio una aplicación sencilla usando node.js y express.
+
+El primer paso consiste en crear el proyecto usando:
+
+* `npm init -y`
+
+Posteriormente, instalamos las dependencias que vamos a necesitar, en mi caso he usado:
+- `npm install express morgan`
+- `npm install nodemon -D`
+
+Hecho esto creamos un fichero dentro del directorio `/src`, llamado [index.js](./src/Tema6/Ej2/src/index.js). Dentro de este fichero, definiremos nuestro servidor que se encargará de servir en una ruta, los datos relativos a varios animales.
+
+```javascript
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+const animales = require('./data/animales.json');
+
+// Settings
+app.set("port", process.env.PORT || 3000);
+app.set('json spaces', 2);
+
+//Middlewares
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
+//Routes
+app.get("/animals", (req, res) => {   
+  res.json(animales);
+});
+
+//Starting the server
+app.listen(app.get('port'), ()=> {
+   console.log(`Server on port ${app.get("port")}`); 
+});
+
+```
+
+Para definir los datos de los animales, he creado un fichero llamado [animales.json](./src/Tema6/Ej2/src/data/animales.json), dentro del directorio `/data`.
+
+```json
+{
+  "animales": 
+  [
+    {
+      "animal": "león",
+      "especie": "mamífero",
+      "alimentacion": "carnívoro"
+    },
+    {
+      "animal": "vaca",
+      "especie": "mamífero",
+      "alimentacion": "herbívoro"
+    },
+    {
+      "animal": "tiburón",
+      "especie": "pez",
+      "alimentacion": "carnívoro"
+    },
+    {
+      "animal": "águila",
+      "especie": "ave",
+      "alimentacion": "carnívoro"
+    },
+    {
+      "animal": "cocodrilo",
+      "especie": "reptil",
+      "alimentacion": "carnívoro"
+    },
+    {
+      "animal": "sapo",
+      "especie": "anfibio",
+      "alimentacion": "carnívoro"
+    }
+  ]
+}
+```
+Para ejecutar nuestro servidor, de una manera más comoda, definimos en el fichero [package.json](./src/Tema6/Ej2/package.json) un script que hace uso de la biblioteca Nodemon.
+
+```json
+{
+  "name": "ej2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {    
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
+```
+
+Podemos comprobar que efectivamente se está sirviendo dichos datos, accediendo desde el navegador a la ruta definida:
+
+`http://localhost:3000/animals`
+
+![Probando servicio desde el navegador](img/Tema6/Ej2_1.png "Probando servicio desde el navegador")
+
+
+O bien desde Curl:
+
+![Probando el servicio desde Curl](img/Tema6/Ej2_2.png "Probando el servicio desde Curl")
+
+
+O bien desde Postman:
+
+![Probando el servicio desde Postman](img/Tema6/Ej2_3.png "Probando el servicio desde Postman")
+
+También podemos hacer uso de la biblioteca Morgan para ver que las peticiones que se están realizando al servidor se hacen correctamente:
+
+![Viendo el servicio usando Morgan](img/Tema6/Ej2_4.png "Viendo el servicio usando Morgan")
+
+
 
 
 
