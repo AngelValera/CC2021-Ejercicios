@@ -17,8 +17,42 @@
 ---
 #### Ejercicio 1: Instalar etcd3, averiguar qué bibliotecas funcionan bien con el lenguaje que estemos escribiendo el proyecto (u otro lenguaje), y hacer un pequeño ejemplo de almacenamiento y recuperación de una clave; hacer el almacenamiento desde la línea de órdenes (con etcdctl) y la recuperación desde el mini-programa que hagáis.
 
+Para este ejercicio, lo primero que debemos hacer es instalar Etcd3 en nuestro sistema. Para esto, he seguido las indicaciones del siguiente [tutorial](https://computingforgeeks.com/how-to-install-etcd-on-ubuntu-18-04-ubuntu-16-04/).
+
+En la siguiente captura podemos comprobar que Etcdl3 está correctamente instalado.
+
+![Instalacion y configuracion de Etcd3](img/Tema6/Ej1_1.png "Instalacion y configuracion de Etcd3")
+
+Una vez configurado, vamos a utilizar las órdenes `PUT` y `GET`, para guardar una variable y posteriormente obtenerla.
+
+![Primer ejemplo de Etcdl3](img/Tema6/Ej1_2.png "Primer ejemplo de Etcdl3")
+
+Para utilizar Etcd3, en Nodejs, podemos utilizar la biblioteca [etcd3](https://www.npmjs.com/package/etcd3). Tal y como ahí se indica, instalamos etcd3 usando npm
+
+`npm install --save etcd3`
+
+Podemos crear un pequeño [script](src/Tema6/Ej1/pruebaEtcd.js) que nos permita probar su uso. Vamos a obtener la variable que guardamos anteriormente y además vamos a grabar una nueva variable y posteriormente obtenerla.
+
+
+```javascript
+const { Etcd3 } = require("etcd3");
+const client = new Etcd3();
+
+(async () => {
+  await client.put("puertoPrueba2").value("3002");
+  console.log("puertoPrueba2:", await client.get("puertoPrueba2").string());
+  console.log("puertoPrueba:", await client.get("puertoPrueba").string());  
+})();
+```
+Tras ejecutarlo, obtendríamos la siguiente salida:
+
+![Segundo ejemplo de Etcdl3](img/Tema6/Ej1_3.png "Segundo ejemplo de Etcdl3")
+
 ---
 #### Ejercicio 2: Realizar una aplicación básica que use express para devolver alguna estructura de datos del modelo que se viene usando en el curso.
+
+
+
 
 ---
 #### Ejercicio 3: Programar un microservicio en express (o el lenguaje y marco elegido) que incluya variables como en el caso anterior.
