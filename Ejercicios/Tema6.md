@@ -476,6 +476,3 @@ Como se puede ver se han definido 3 tareas. La primera tarea se encarga de ejecu
 ![Ejecución de la tarea de start](img/Tema6/Ej6_2.png "Ejecución de la tarea de start")
 
 ![Ejecución de la tarea de stop](img/Tema6/Ej6_3.png "Ejecución de la tarea de stop")
-
-
-
