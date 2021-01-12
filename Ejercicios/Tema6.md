@@ -420,3 +420,62 @@ Podemos parar todos los procesos, para ello podemos usar:
 
 
 #### Ejercicio 6: Usar rake, invoke o la herramienta equivalente en tu lenguaje de programación para programar diferentes tareas que se puedan lanzar fácilmente desde la línea de órdenes.
+
+Para este ejerciciovamos a utilizar el gestor de tareas Grunt. De manera que lo primero que haremos será instalarlo:
+
+- `npm install -g grunt-cli`
+- `npm install grunt-cli`
+
+Una vez instalado, instalaremos también los plugins para poder definir las tareas necesarias.
+
+- `npm install grunt-run`
+- `npm install grunt-mocha-test` 
+
+Una vez hecho esto, desde el directorio raiz de nuestro proyecto, crearemos el fichero [Gruntfile.js](./src/Tema6/Api/Gruntfile.js).
+
+```javascript
+module.exports = function (grunt) {
+  // Configuración del proyecto
+  grunt.initConfig({
+    pkg: grunt.file.readJSON("package.json"),
+    mochaTest: {
+      test: {
+        options: {
+          reporter: "spec",
+          quiet: false,
+          ui: "bdd",
+        },
+        src: ["test/**/*.js"],
+      },
+    },
+    run: {
+      start: {
+        cmd: "pm2",
+        args: ["start", "./src/index.js", "--name", "animals", "-i", "2"],
+      },
+      stop: {
+        cmd: "pm2",
+        args: ["stop", "animals"],
+      },
+    }    
+  });
+
+  // Carga los plugins de grunt
+  grunt.loadNpmTasks("grunt-mocha-test");
+  grunt.loadNpmTasks("grunt-run");
+  // Tareas
+  grunt.registerTask("test", ["mochaTest"]);  
+  grunt.registerTask("start", ["run:start"]);
+  grunt.registerTask("stop", ["run:stop"]);
+};
+```
+Como se puede ver se han definido 3 tareas. La primera tarea se encarga de ejecutar los test, la segunda ejecuta dos instancias del servicio usando pm2 y la última tarea, finaliza la ejecución de dichas instancias.
+
+![Ejecución de la tarea de test](img/Tema6/Ej6_1.png "Ejecución de la tarea de test")
+
+![Ejecución de la tarea de start](img/Tema6/Ej6_2.png "Ejecución de la tarea de start")
+
+![Ejecución de la tarea de stop](img/Tema6/Ej6_3.png "Ejecución de la tarea de stop")
+
+
+
