@@ -292,6 +292,8 @@ Acontinuación vamos a ver cómo se han probado cada una de las distintas rutas 
 
 ![Prueba de la creación de un nuevo animal](img/Tema6/Ej3_3.png "Prueba de la creación de un nuevo animal")
 
+Una vez creado el nuevo animal, si decidimos volver a obtener todos los animales, nos aparecerá.
+
 ![Prueba de la obtención de todos los animales](img/Tema6/Ej3_4.png "Prueba de la obtención de todos los animales")
 
 ---
