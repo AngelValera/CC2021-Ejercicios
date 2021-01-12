@@ -299,6 +299,56 @@ Una vez creado el nuevo animal, si decidimos volver a obtener todos los animales
 ---
 #### Ejercicio 4: Crear pruebas para las diferentes rutas de la aplicación.
 
+Para testear las distintas rutas de nuestro servicio, vamos a utilizar las bibliotecas `mocha` y `supertest`. Las cuales instalamos de la siguiente manera:
+
+- `npm install --save -g mocha`
+- `npm install --save supertest`
+
+A continuación, el siguiente paso es crear en nuestro proyecto un nuevo directorio llamado `/test` y agregar el siguiente [fichero](./src/Tema6/Api/test/animals.test.js):
+
+```javascript
+var request = require("supertest");
+app = require("../src/index.js");
+
+
+describe("Animales", () => {  
+  describe("GET", () => {
+    it("Deberia devolver una lista con todos los animales", (done) => {
+      request(app)
+        .get("/animals")
+        .expect("Content-Type", /json/)
+        .expect(200, done);
+    });
+  });
+});
+
+describe("Un solo Animal", () => {
+  describe("GET", () => {
+    it("Deberia devolver un solo animal", (done) => {
+      request(app)
+        .get("/animals/0")
+        .expect("Content-Type", /json/)
+        .expect(200, done);
+    });
+  });
+});
+
+describe("Un nuevo Animal", () => {
+  describe("POST", () => {
+    it("Deberia crear un nuevo animal", (done) => {
+      request(app)
+        .post("/animals/cabra/mamifero/herbivoro")
+        .expect("Content-Type", /json/)
+        .expect(200, done);
+    });
+  });
+});
+```
+
+Como se puede ver en el fichero anterior, hemos creado un test para cada ruta, de manera que al ejecutarlo, nos lo debe dar por bueno.
+
+![Resultado de la ejecución de los test](img/Tema6/Ej4_1.png "Resultado de la ejecución de los test")
+
 ---
 #### Ejercicio 5: Experimentar con diferentes gestores de procesos y servidores web front-end para un microservicio que se haya hecho con antelación, por ejemplo en la sección anterior.
 
