@@ -352,5 +352,71 @@ Como se puede ver en el fichero anterior, hemos creado un test para cada ruta, d
 ---
 #### Ejercicio 5: Experimentar con diferentes gestores de procesos y servidores web front-end para un microservicio que se haya hecho con antelación, por ejemplo en la sección anterior.
 
----
+Dentro de los gestores de procesos disponibles para NodeJS, podemos encontrar **PM2** y **Forever** entre otros:
+
+**PM2**
+
+En primer lugar utilizaré PM2. Para ello, lo primero es instalarlo:
+
+- `npm install --save -g pm2`
+
+Una vez instalado, podemos inicializarlo mediante el siguiente comando:
+
+- `pm2 start ./src/index.js --name "animals" -i 2`
+
+Con esto, pm2 iniciará 2 instancias de nustro microservicio.
+
+![Arranque de dos instancias del servicio](img/Tema6/Ej5_1.png "Arranque de dos instancias del servicio")
+
+Para para el servicio podemos usar:
+
+- `pm2 stop animals`
+   
+![Paro instancias del servicio](img/Tema6/Ej5_2.png "Paro instancias del servicio")
+
+Para volver a lanzar las instancias, podemos usar:
+
+- `pm2 reload animals`
+
+![Reinicio las instancias del servicio](img/Tema6/Ej5_3.png "Reinicio las instancias del servicio")
+
+Por último, una de las funciones interesantes de PM2 es poder ver la información de las diferentes instancias, para ello usamos:
+
+- `pm2 describe animals`
+
+![Visualizo las instancias del servicio](img/Tema6/Ej5_4.png "Visualizo las instancias del servicio")
+
+![Visualizo las instancias del servicio](img/Tema6/Ej5_5.png "Visualizo las instancias del servicio")
+
+Por último, podemos eliminar los procesos, para ello, podemos usar:
+
+- `pm2 delete animals`
+
+![Elimino las instancias del servicio](img/Tema6/Ej5_6.png "Elimino las instancias del servicio")
+
+**Forever**
+
+-En segundo lugar utilizaré Forever. Para ello, lo primero es instalarlo:
+
+- `npm install --save -g forever`
+
+Una vez instalado, podemos inicializarlo mediante el siguiente comando:
+
+- `forever start ./src/index.js `
+
+![Iniciamos un proceso usando Forever](img/Tema6/Ej5_7.png "Iniciamos un proceso usando Forever")
+
+Podemos listar los procesos activos, para ello podemos usar:
+
+- `forever list`
+
+![Listamos los procesos usando Forever](img/Tema6/Ej5_8.png "Listamos los procesos usando Forever")
+
+Podemos parar todos los procesos, para ello podemos usar:
+
+- `forever stopall`
+
+![Paramos los procesos usando Forever](img/Tema6/Ej5_9.png "Paramos los procesos usando Forever")
+
+
 #### Ejercicio 6: Usar rake, invoke o la herramienta equivalente en tu lenguaje de programación para programar diferentes tareas que se puedan lanzar fácilmente desde la línea de órdenes.
