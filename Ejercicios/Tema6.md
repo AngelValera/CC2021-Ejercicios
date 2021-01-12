@@ -61,7 +61,7 @@ Posteriormente, instalamos las dependencias que vamos a necesitar, en mi caso he
 - `npm install express morgan`
 - `npm install nodemon -D`
 
-Hecho esto creamos un fichero dentro del directorio `/src`, llamado [index.js](./src/Tema6/Ej2/src/index.js). Dentro de este fichero, definiremos nuestro servidor que se encargará de servir en una ruta, los datos relativos a varios animales.
+Hecho esto creamos un fichero dentro del directorio `/src`, llamado index.js. Dentro de este fichero, definiremos nuestro servidor que se encargará de servir en una ruta, los datos relativos a varios animales.
 
 ```javascript
 const express = require('express');
@@ -90,7 +90,7 @@ app.listen(app.get('port'), ()=> {
 
 ```
 
-Para definir los datos de los animales, he creado un fichero llamado [animales.json](./src/Tema6/Ej2/src/data/animales.json), dentro del directorio `/data`.
+Para definir los datos de los animales, he creado un fichero llamado [animales.json](./src/Tema6/Api/src/data/animales.json), dentro del directorio `/data`.
 
 ```json
 {
@@ -129,7 +129,7 @@ Para definir los datos de los animales, he creado un fichero llamado [animales.j
   ]
 }
 ```
-Para ejecutar nuestro servidor, de una manera más comoda, definimos en el fichero [package.json](./src/Tema6/Ej2/package.json) un script que hace uso de la biblioteca Nodemon.
+Para ejecutar nuestro servidor, de una manera más comoda, definimos en el fichero [package.json](./src/Tema6/Api/package.json) un script que hace uso de la biblioteca Nodemon.
 
 ```json
 {
@@ -173,12 +173,126 @@ También podemos hacer uso de la biblioteca Morgan para ver que las peticiones q
 
 ![Viendo el servicio usando Morgan](img/Tema6/Ej2_4.png "Viendo el servicio usando Morgan")
 
-
-
-
-
 ---
 #### Ejercicio 3: Programar un microservicio en express (o el lenguaje y marco elegido) que incluya variables como en el caso anterior.
+
+
+Partiendo de la aplicación anterior, vamos a definir un microservicio que se encarge de servir datos sobre distintos animales.
+
+El api se puede encontrar en el siguiente [directorio](./src/Tema6/Api).
+```
+├── Api
+    ├── src
+        ├── data
+            ├── animales.json
+        ├── routes
+            ├── index.js
+        ├── index.js
+    ├── package-lock.json
+    ├── package.json
+```
+En el fichero [index.js](./src/Tema6/Api/src/index.js) del directorio `/src` hemos eliminado las definición de las distintas rutas y hemos agregado el uso de la biblioteca etcd3 para definir el puerto del servidor.
+
+```javascript
+const express = require('express');
+const app = express();
+const morgan = require('morgan');
+
+const { Etcd3 } = require("etcd3");
+const client = new Etcd3();
+
+async function getPort() {
+  const port = await client.get("AnimalsPort");
+  return port;
+}
+
+// Settings
+//app.set("port", process.env.PORT || 3000);
+app.set('json spaces', 2);
+
+//Middlewares
+app.use(morgan('dev'));
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
+//Routes
+app.use(require('./routes/index'));
+
+app.use(function (request, response) {
+  response.status(400);
+  response.json({
+    error: {
+      name: "Error",
+      message: "Debe acceder a la ruta: /animals",
+    },
+  });
+});
+
+//Starting the server
+(async () => {    
+  let PORT = await getPort();  
+  app.set("port", PORT || process.env.PORT || 3000);    
+})().then(() => {
+  app.listen(app.get("port"), () => {
+    console.log(`Server on port ${app.get("port")}`);
+  });
+});
+
+```
+Las rutas ahora están definidas en el fichero [index.js](./src/Tema6/Api/src/routes/index.js) del directorio `/routes`. 
+
+```javascript
+const { Router } = require('express');
+const router = Router();
+const animales = require("../data/animales.json");
+
+router.get("/animals", (req, res) => {
+  res.status(200);
+  res.header("Content-Type", "application/json");
+  res.json(animales);   
+});
+
+router.get("/animals/:id", (req, res) => {
+  if (animales.animales.hasOwnProperty(req.params.id)) {
+    res.status(200);
+    res.header("Content-Type", "application/json");
+    res.json(animales.animales[req.params.id]);
+  }else{
+    res.status(400).send("No existe ese animal");;
+  }  
+});
+
+router.post("/animals/:animal/:especie/:alimentacion", (req, res) => {
+  
+  let id = animales.animales.push({
+    animal: req.params.animal,
+    especie: req.params.especie,
+    alimentacion: req.params.alimentacion
+  });   
+  console.log(animales.animales[id - 1]);
+  res.status(200);
+  res.send({
+    animal: animales.animales[id-1],
+    message: "Animal POST ok",
+  });
+});
+module.exports = router;
+```
+Como se puede ver se han definido 3 rutas principales. Dos de ellas utilizan `GET` y la otra utiliza `POST`.
+
+- **GET** `/animals`: Devuelve todos los animales.
+- **GET** `/animals/:id`: Devuelve el animal cuyo id pasemos como parámetro. También comprobamos que el id exista y en caso negativo devolvemos un código 404 con un mensaje.
+- **POST** `/animals/:animal/:especie/:alimentacion`: Creamos un nuevo animal cuyos datos son los que pasemos por parámetro.
+
+Acontinuación vamos a ver cómo se han probado cada una de las distintas rutas del servicio usando postman.
+
+![Prueba de la obtención de todos los animales](img/Tema6/Ej3_1.png "Prueba de la obtención de todos los animales")
+
+![Prueba de la obtención de un solo animal](img/Tema6/Ej3_2.png "Prueba de la obtención de un solo animal")
+
+![Prueba de la creación de un nuevo animal](img/Tema6/Ej3_3.png "Prueba de la creación de un nuevo animal")
+
+![Prueba de la obtención de todos los animales](img/Tema6/Ej3_4.png "Prueba de la obtención de todos los animales")
 
 ---
 #### Ejercicio 4: Crear pruebas para las diferentes rutas de la aplicación.
