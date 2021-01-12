@@ -41,3 +41,5 @@ app.use(function (request, response) {
     console.log(`Server on port ${app.get("port")}`);
   });
 });
+
+module.exports = app;
