@@ -9,6 +9,6 @@ En este repositorio se van a ir realizando los ejercicios de autoevaluación nec
 * [Tema 2: Desarrollo basado en pruebas.](Ejercicios/Tema2.md) 
 * [Tema 3: Usando contenedores.](Ejercicios/Tema3.md)
 * [Tema 4: Integración continua.](Ejercicios/Tema4.md) 
-* :point_right: **[Tema 6: Microservicios.](Ejercicios/Tema6.md)**
-<!--* [Tema 6: Creación de infraestructuras virtuales reproducibles]() -->
+* [Tema 6: Microservicios.](Ejercicios/Tema6.md)
+* :point_right: **[Tema 7: Composición de servicios](Ejercicios/Tema7.md)** 
 <!--* [Tema 7: Orquestación de máquinas virtuales]() -->
