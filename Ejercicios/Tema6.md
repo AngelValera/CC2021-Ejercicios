@@ -490,3 +490,76 @@ Tras ejecutarlo, obtendríamos la siguiente salida:
 
 ---
 #### Ejercicio 2: Instalar consul, averiguar qué bibliotecas funcionan bien con el lenguaje que estemos escribiendo el proyecto (u otro lenguaje), y hacer un pequeño ejemplo de almacenamiento y recuperación de una clave desde la línea de órdenes.
+
+Para este ejercicio, lo primero que debemos hacer es instalar Consul en nuestro sistema. Para esto, he seguido las indicaciones de la página de [Consul](https://learn.hashicorp.com/tutorials/consul/get-started-install?in=consul/getting-started).
+
+Una vez instalado, podemos comprobar que se ha instalado correctamente:
+
+![Instalación de Consul](img/Tema6/Ej7_1.png "Instalación de Consul")
+
+El siguiente paso, tal y como se indica en la página de [Consul](https://learn.hashicorp.com/tutorials/consul/get-started-agent) es el de ejecutar el agente, y para ello ejecutamos el siguiente comando:
+
+```shell
+consul agent -dev -node machine &
+```
+
+A continuación, vamos a almacenar tanto el puerto como el host de prueba y para ello ejecutaremos los siguientes comandos:
+
+```shell
+consul kv put puertoPrueba 3001
+consul kv put hostPrueba localhost
+```
+![Almacenamiento de variables en Consul](img/Tema6/Ej7_2.png "Almacenamiento de variables en Consul")
+
+También podemos obtener esos valores con los siguientes comandos:
+
+```shell
+consul kv get hostPrueba
+consul kv get puertoPrueba
+```
+![Almacenamiento de variables en Consul](img/Tema6/Ej7_3.png "Almacenamiento de variables en Consul")
+
+El siguiente paso es crear un pequeño programa en Node.js que sea capaz de utilizar consul. Para esto, lo primero será instalar la biblioteca [consul](https://www.npmjs.com/package/consul).
+
+Una vez instalada, creamos el fichero [pruebaConsul.js](src/Tema6/Ej2/pruebaConsul.js) con el siguiente contenido:
+
+```javascript
+class Config {
+  constructor() {
+    var self = this;
+    const consul = require("consul")();
+    self.listening_ip_address =
+      process.env.LISTENING_IP_ADDRESS ||      
+      "0.0.0.0";
+    self.port = process.env.PORT || 3000;
+    consul.agent.service.list(function (err, result) {
+      if (err) {
+        console.log("Consul no está conectado");
+      } else {
+        consul.kv.get("hostPrueba", function (err, result) {
+          if (result != undefined) {
+            self.host = result.Value;
+            console.log("Host: " + self.host);
+          }
+        });
+
+        consul.kv.get("puertoPrueba", function (err, result) {
+          if (result != undefined) {
+            self.port = result.Value;
+            console.log("Puerto: " + self.port);
+          }
+        });
+      }
+    });
+  }
+}
+
+const conf = new Config();
+
+module.exports = { Config };
+
+```
+Tras ejecutarlo, obtendríamos la siguiente salida:
+
+![Ejemplo de Consul](img/Tema6/Ej7_4.png "Ejemplo de Consul")
+
