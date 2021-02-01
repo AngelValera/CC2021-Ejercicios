@@ -1,55 +1,28 @@
-## Ejercicios Tema 6: Microservicios
+## Ejercicios Tema 6: Microservicios y Configuración de microservicios
 
 <!-- 
 [enlace](https://docs.docker.com/engine/install/ubuntu/).
 
 ![Ejecución del contenedor de prueba usando Docker por primera vez](img/Tema3/Ej1_1.png "Ejecución del contenedor de prueba usando Docker por primera vez")
  -->
-
-- [Ejercicios Tema 6: Microservicios](#ejercicios-tema-6-microservicios)
+- [Ejercicios Tema 6: Microservicios y Configuración de microservicios](#ejercicios-tema-6-microservicios-y-configuración-de-microservicios)
+  - [Microservicios](#microservicios)
+    - [Ejercicio 1: Realizar una aplicación básica que use express para devolver alguna estructura de datos del modelo que se viene usando en el curso.](#ejercicio-1-realizar-una-aplicación-básica-que-use-express-para-devolver-alguna-estructura-de-datos-del-modelo-que-se-viene-usando-en-el-curso)
+    - [Ejercicio 2: Programar un microservicio en express (o el lenguaje y marco elegido) que incluya variables como en el caso anterior.](#ejercicio-2-programar-un-microservicio-en-express-o-el-lenguaje-y-marco-elegido-que-incluya-variables-como-en-el-caso-anterior)
+    - [Ejercicio 3: Crear pruebas para las diferentes rutas de la aplicación.](#ejercicio-3-crear-pruebas-para-las-diferentes-rutas-de-la-aplicación)
+    - [Ejercicio 4: Experimentar con diferentes gestores de procesos y servidores web front-end para un microservicio que se haya hecho con antelación, por ejemplo en la sección anterior.](#ejercicio-4-experimentar-con-diferentes-gestores-de-procesos-y-servidores-web-front-end-para-un-microservicio-que-se-haya-hecho-con-antelación-por-ejemplo-en-la-sección-anterior)
+    - [Ejercicio 5: Usar rake, invoke o la herramienta equivalente en tu lenguaje de programación para programar diferentes tareas que se puedan lanzar fácilmente desde la línea de órdenes.](#ejercicio-5-usar-rake-invoke-o-la-herramienta-equivalente-en-tu-lenguaje-de-programación-para-programar-diferentes-tareas-que-se-puedan-lanzar-fácilmente-desde-la-línea-de-órdenes)
+  - [Configuración de microservicios](#configuración-de-microservicios)
     - [Ejercicio 1: Instalar etcd3, averiguar qué bibliotecas funcionan bien con el lenguaje que estemos escribiendo el proyecto (u otro lenguaje), y hacer un pequeño ejemplo de almacenamiento y recuperación de una clave; hacer el almacenamiento desde la línea de órdenes (con etcdctl) y la recuperación desde el mini-programa que hagáis.](#ejercicio-1-instalar-etcd3-averiguar-qué-bibliotecas-funcionan-bien-con-el-lenguaje-que-estemos-escribiendo-el-proyecto-u-otro-lenguaje-y-hacer-un-pequeño-ejemplo-de-almacenamiento-y-recuperación-de-una-clave-hacer-el-almacenamiento-desde-la-línea-de-órdenes-con-etcdctl-y-la-recuperación-desde-el-mini-programa-que-hagáis)
-    - [Ejercicio 2: Realizar una aplicación básica que use express para devolver alguna estructura de datos del modelo que se viene usando en el curso.](#ejercicio-2-realizar-una-aplicación-básica-que-use-express-para-devolver-alguna-estructura-de-datos-del-modelo-que-se-viene-usando-en-el-curso)
-    - [Ejercicio 3: Programar un microservicio en express (o el lenguaje y marco elegido) que incluya variables como en el caso anterior.](#ejercicio-3-programar-un-microservicio-en-express-o-el-lenguaje-y-marco-elegido-que-incluya-variables-como-en-el-caso-anterior)
-    - [Ejercicio 4: Crear pruebas para las diferentes rutas de la aplicación.](#ejercicio-4-crear-pruebas-para-las-diferentes-rutas-de-la-aplicación)
-    - [Ejercicio 5: Experimentar con diferentes gestores de procesos y servidores web front-end para un microservicio que se haya hecho con antelación, por ejemplo en la sección anterior.](#ejercicio-5-experimentar-con-diferentes-gestores-de-procesos-y-servidores-web-front-end-para-un-microservicio-que-se-haya-hecho-con-antelación-por-ejemplo-en-la-sección-anterior)
-    - [Ejercicio 6: Usar rake, invoke o la herramienta equivalente en tu lenguaje de programación para programar diferentes tareas que se puedan lanzar fácilmente desde la línea de órdenes.](#ejercicio-6-usar-rake-invoke-o-la-herramienta-equivalente-en-tu-lenguaje-de-programación-para-programar-diferentes-tareas-que-se-puedan-lanzar-fácilmente-desde-la-línea-de-órdenes)
+    - [Ejercicio 2: Instalar consul, averiguar qué bibliotecas funcionan bien con el lenguaje que estemos escribiendo el proyecto (u otro lenguaje), y hacer un pequeño ejemplo de almacenamiento y recuperación de una clave desde la línea de órdenes.](#ejercicio-2-instalar-consul-averiguar-qué-bibliotecas-funcionan-bien-con-el-lenguaje-que-estemos-escribiendo-el-proyecto-u-otro-lenguaje-y-hacer-un-pequeño-ejemplo-de-almacenamiento-y-recuperación-de-una-clave-desde-la-línea-de-órdenes)
+  
+---
+
+### Microservicios
 
 ---
-#### Ejercicio 1: Instalar etcd3, averiguar qué bibliotecas funcionan bien con el lenguaje que estemos escribiendo el proyecto (u otro lenguaje), y hacer un pequeño ejemplo de almacenamiento y recuperación de una clave; hacer el almacenamiento desde la línea de órdenes (con etcdctl) y la recuperación desde el mini-programa que hagáis.
 
-Para este ejercicio, lo primero que debemos hacer es instalar Etcd3 en nuestro sistema. Para esto, he seguido las indicaciones del siguiente [tutorial](https://computingforgeeks.com/how-to-install-etcd-on-ubuntu-18-04-ubuntu-16-04/).
-
-En la siguiente captura podemos comprobar que Etcdl3 está correctamente instalado.
-
-![Instalacion y configuracion de Etcd3](img/Tema6/Ej1_1.png "Instalacion y configuracion de Etcd3")
-
-Una vez configurado, vamos a utilizar las órdenes `PUT` y `GET`, para guardar una variable y posteriormente obtenerla.
-
-![Primer ejemplo de Etcdl3](img/Tema6/Ej1_2.png "Primer ejemplo de Etcdl3")
-
-Para utilizar Etcd3, en Nodejs, podemos utilizar la biblioteca [etcd3](https://www.npmjs.com/package/etcd3). Tal y como ahí se indica, instalamos etcd3 usando npm
-
-`npm install --save etcd3`
-
-Podemos crear un pequeño [script](src/Tema6/Ej1/pruebaEtcd.js) que nos permita probar su uso. Vamos a obtener la variable que guardamos anteriormente y además vamos a grabar una nueva variable y posteriormente obtenerla.
-
-
-```javascript
-const { Etcd3 } = require("etcd3");
-const client = new Etcd3();
-
-(async () => {
-  await client.put("puertoPrueba2").value("3002");
-  console.log("puertoPrueba2:", await client.get("puertoPrueba2").string());
-  console.log("puertoPrueba:", await client.get("puertoPrueba").string());  
-})();
-```
-Tras ejecutarlo, obtendríamos la siguiente salida:
-
-![Segundo ejemplo de Etcdl3](img/Tema6/Ej1_3.png "Segundo ejemplo de Etcdl3")
-
----
-#### Ejercicio 2: Realizar una aplicación básica que use express para devolver alguna estructura de datos del modelo que se viene usando en el curso.
+#### Ejercicio 1: Realizar una aplicación básica que use express para devolver alguna estructura de datos del modelo que se viene usando en el curso.
 
 Vamos a crear desde el principio una aplicación sencilla usando node.js y express.
 
@@ -174,7 +147,7 @@ También podemos hacer uso de la biblioteca Morgan para ver que las peticiones q
 ![Viendo el servicio usando Morgan](img/Tema6/Ej2_4.png "Viendo el servicio usando Morgan")
 
 ---
-#### Ejercicio 3: Programar un microservicio en express (o el lenguaje y marco elegido) que incluya variables como en el caso anterior.
+#### Ejercicio 2: Programar un microservicio en express (o el lenguaje y marco elegido) que incluya variables como en el caso anterior.
 
 
 Partiendo de la aplicación anterior, vamos a definir un microservicio que se encarge de servir datos sobre distintos animales.
@@ -297,7 +270,7 @@ Una vez creado el nuevo animal, si decidimos volver a obtener todos los animales
 ![Prueba de la obtención de todos los animales](img/Tema6/Ej3_4.png "Prueba de la obtención de todos los animales")
 
 ---
-#### Ejercicio 4: Crear pruebas para las diferentes rutas de la aplicación.
+#### Ejercicio 3: Crear pruebas para las diferentes rutas de la aplicación.
 
 Para testear las distintas rutas de nuestro servicio, vamos a utilizar las bibliotecas `mocha` y `supertest`. Las cuales instalamos de la siguiente manera:
 
@@ -350,7 +323,7 @@ Como se puede ver en el fichero anterior, hemos creado un test para cada ruta, d
 ![Resultado de la ejecución de los test](img/Tema6/Ej4_1.png "Resultado de la ejecución de los test")
 
 ---
-#### Ejercicio 5: Experimentar con diferentes gestores de procesos y servidores web front-end para un microservicio que se haya hecho con antelación, por ejemplo en la sección anterior.
+#### Ejercicio 4: Experimentar con diferentes gestores de procesos y servidores web front-end para un microservicio que se haya hecho con antelación, por ejemplo en la sección anterior.
 
 Dentro de los gestores de procesos disponibles para NodeJS, podemos encontrar **PM2** y **Forever** entre otros:
 
@@ -419,7 +392,7 @@ Podemos parar todos los procesos, para ello podemos usar:
 ![Paramos los procesos usando Forever](img/Tema6/Ej5_9.png "Paramos los procesos usando Forever")
 
 
-#### Ejercicio 6: Usar rake, invoke o la herramienta equivalente en tu lenguaje de programación para programar diferentes tareas que se puedan lanzar fácilmente desde la línea de órdenes.
+#### Ejercicio 5: Usar rake, invoke o la herramienta equivalente en tu lenguaje de programación para programar diferentes tareas que se puedan lanzar fácilmente desde la línea de órdenes.
 
 Para este ejerciciovamos a utilizar el gestor de tareas Grunt. De manera que lo primero que haremos será instalarlo:
 
@@ -476,3 +449,44 @@ Como se puede ver se han definido 3 tareas. La primera tarea se encarga de ejecu
 ![Ejecución de la tarea de start](img/Tema6/Ej6_2.png "Ejecución de la tarea de start")
 
 ![Ejecución de la tarea de stop](img/Tema6/Ej6_3.png "Ejecución de la tarea de stop")
+
+---
+
+### Configuración de microservicios
+
+---
+#### Ejercicio 1: Instalar etcd3, averiguar qué bibliotecas funcionan bien con el lenguaje que estemos escribiendo el proyecto (u otro lenguaje), y hacer un pequeño ejemplo de almacenamiento y recuperación de una clave; hacer el almacenamiento desde la línea de órdenes (con etcdctl) y la recuperación desde el mini-programa que hagáis.
+
+Para este ejercicio, lo primero que debemos hacer es instalar Etcd3 en nuestro sistema. Para esto, he seguido las indicaciones del siguiente [tutorial](https://computingforgeeks.com/how-to-install-etcd-on-ubuntu-18-04-ubuntu-16-04/).
+
+En la siguiente captura podemos comprobar que Etcdl3 está correctamente instalado.
+
+![Instalacion y configuracion de Etcd3](img/Tema6/Ej1_1.png "Instalacion y configuracion de Etcd3")
+
+Una vez configurado, vamos a utilizar las órdenes `PUT` y `GET`, para guardar una variable y posteriormente obtenerla.
+
+![Primer ejemplo de Etcdl3](img/Tema6/Ej1_2.png "Primer ejemplo de Etcdl3")
+
+Para utilizar Etcd3, en Nodejs, podemos utilizar la biblioteca [etcd3](https://www.npmjs.com/package/etcd3). Tal y como ahí se indica, instalamos etcd3 usando npm
+
+`npm install --save etcd3`
+
+Podemos crear un pequeño [script](src/Tema6/Ej1/pruebaEtcd.js) que nos permita probar su uso. Vamos a obtener la variable que guardamos anteriormente y además vamos a grabar una nueva variable y posteriormente obtenerla.
+
+
+```javascript
+const { Etcd3 } = require("etcd3");
+const client = new Etcd3();
+
+(async () => {
+  await client.put("puertoPrueba2").value("3002");
+  console.log("puertoPrueba2:", await client.get("puertoPrueba2").string());
+  console.log("puertoPrueba:", await client.get("puertoPrueba").string());  
+})();
+```
+Tras ejecutarlo, obtendríamos la siguiente salida:
+
+![Segundo ejemplo de Etcdl3](img/Tema6/Ej1_3.png "Segundo ejemplo de Etcdl3")
+
+---
+#### Ejercicio 2: Instalar consul, averiguar qué bibliotecas funcionan bien con el lenguaje que estemos escribiendo el proyecto (u otro lenguaje), y hacer un pequeño ejemplo de almacenamiento y recuperación de una clave desde la línea de órdenes.
